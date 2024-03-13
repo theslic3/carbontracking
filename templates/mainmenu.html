@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styleMain.css') }}">
+  <title>Carbon Footprint Tracker - Dashboard</title>
+</head>
+<body>
+  <div class="container">
+    <div class="dashboard-info">
+      <img src="../static/img/logoleaf.png" alt="logo" class="logo">
+      <h1>Welcome to your Dashboard.</h1>
+      <p>Explore the tools below to understand your Carbon Footprint.</p>
+    </div>
+    <div class="dashboard">
+      <a href="/calculatefootprint" class="dashboard-item" style="text-decoration: none;" >
+          <img src="../static/img/calculatefootprint.png" alt="calculate footprint" class="img">
+          <h2>Calculate Footprint</h2>
+      </a>
+      <a href="link-to-track-footprint" class="dashboard-item" style="text-decoration: none;">
+          <img src="../static/img/trackfootprint.png" alt="calculate footprint" class="img">
+          <h2>Track Footprint</h2>
+      </a>
+      <a href="link-to-visualise-footprint" class="dashboard-item" style="text-decoration: none;">
+          <img src="../static/img/visualisefootprint.png" alt="calculate footprint" class="img">
+          <h2>Visualise Footprint</h2>
+      </a>
+      <a href="link-to-improve-footprint" class="dashboard-item" style="text-decoration: none;">
+          <img src="../static/img/offset.png" alt="calculate footprint" class="img">
+          <h2>Improve Footprint</h2>
+      </a>
+      <a href="link-to-account-settings" class="dashboard-item" style="text-decoration: none;">
+          <img src="../static/img/accountsettings.png" alt="account settings" class="img">
+          <h2>Account Settings</h2>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

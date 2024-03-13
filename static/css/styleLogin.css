@@ -1,0 +1,114 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../img/backgroundmain1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #ffffff; /* White container background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  text-align: center;
+  width: 100px; /* Adjust the size as needed */
+  height: auto; /* Adjust the size as needed */
+  padding: 0px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50; /* Green login button */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+}
+
+/* New styles for options-container */
+.options-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.option {
+    text-decoration: none;
+    color: #1a8f45; /* Darker green for options */
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.separator {
+    color: #555;
+}
+/*
+body, .login-container {
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: #2e2e2e;
+}
+
+body.dark-mode .login-container {
+    background-color: #333;
+}
+
+body.dark-mode button,
+body.dark-mode .option {
+    background-color: #555;
+    color: #fff;
+}
+*/
