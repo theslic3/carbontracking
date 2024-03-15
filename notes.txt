@@ -77,3 +77,12 @@ def calculate():
 if __name__ == '__main__':
     app.run(debug=True)
 3
+
+///////////////
+
+pip install -r requirements.txt
+pip freeze > requirements.txt
+
+
+-----------------------------------------------------------------------------------
+benefits, why they're necessary,

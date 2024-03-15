@@ -1,22 +1,81 @@
 from dashboard.calculation import *
+from dashboard.userValidation import *
 import json
-from flask import Flask, render_template, request, jsonify, Response
+from flask import Flask, render_template, request, jsonify, Response, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
+from email_validator import validate_email, EmailNotValidError
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite'  # SQLite URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable tracking modifications
+db = SQLAlchemy(app)
 
-@app.route('/')
+# Define User model
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255), unique=True, nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+
+# Create database tables
+with app.app_context():
+    db.create_all()
+
+
+@app.route('/', methods=['GET', 'POST'])
 def hello():
+    if request.method == 'POST':
+        print(request)
+        return redirect('/signin.html')
     return render_template('signin.html')
 
-@app.route('/register',  methods=['GET', 'POST'])
+@app.route('/signin', methods=['GET','POST'])
+def signin():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # Check if the user exists
+        user = User.query.filter_by(email=email).first()
+        if user and user.password == password:
+            return redirect('/mainmenu')
+        else:
+            return render_template('signin.html', error='Invalid email or password')
+    return render_template('signin.html')
+
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        return redirect('/mainMenu')  # Redirect to login page after successful registration
+        email = request.form['email']
+        name = request.form['name']
+        password1 = request.form['password1']
+        password2 = request.form['password2']
 
-    else:
-        return render_template('register.html')
+        if not is_valid_email(email):
+            return render_template('register.html', error='Please enter a valid email.')
+        if not is_valid_name(name):
+            return render_template('register.html', error='Please enter a real name.')
+        if not is_valid_password(password1):
+            return render_template('register.html', error='Please enter a stronger password') #: 8<Length<20, min 1 upper case, 1 lower case, 1 symbol, 1 number.)')
+        if password1 != password2:
+            return render_template('register.html', error='Ensure Passwords Match')
+
+        if User.query.filter_by(email=email).first():
+            return render_template('register.html', error='Email already exists')
+
+        # Create a new user
+        new_user = User(email=email, name=name, password=password1)
+        db.session.add(new_user)
+        db.session.commit()
+
+        return redirect('/signin')  # Redirect to login page after successful registration
+
+    return render_template('register.html')
+
+@app.route('/mainmenu', methods=['GET', 'POST'])
+def show_dashboard():
+    return render_template('mainmenu.html')
 
 @app.route('/calculatefootprint', methods=['GET'])
 def show_calculate_page():
