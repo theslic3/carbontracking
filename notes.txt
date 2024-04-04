@@ -1,88 +1,36 @@
-Data Entry:::::
-
-1)
-User Email
-
-2)
-User Name?
-
-3)
-Password (needs to be validated)
-
-4)
-Footprint & Emission factors
-Emission factors to the database
-This is then saved with the date and time to give a footprint.
-Recent footprint is the most recent piece of footprint data.
-This data will have overall emission, as well as a breakdown of the different emissions factors
-
-from flask import Flask, render_template, request, jsonify, Response
-from dashboard.calculation import *
-import json
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello():
-    return render_template('signin.html')
-
-@app.route('/register',  methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        return redirect('/mainMenu')  # Redirect to login page after successful registration
-
-    else:
-        return render_template('register.html')
-
-@app.route('/calculatefootprint', methods=['GET'])
-def show_calculate_page():
-    print('template retrieved')
-    return render_template('calculatefootprint.html')
-
-@app.route('/calculatefootprint', methods=['POST'])
-def calculate():
-    data = request.form
-    electricity = float(data.get('electricity-factor'))
-    gas = float(data.get('gas-factor'))
-    oil = float(data.get('oil-factor'))
-    car_mileage = float(data.get('carmileage-factor'))
-    longhaul = float(data.get('longhaul-factor'))
-    shorthaul = float(data.get('shorthaul-factor'))
-    newspaper = convertRecycling(str(data.get('newspaper-factor')))
-    tin = convertRecycling(str(data.get('tin-factor')))
-
-    print(tin, newspaper)
-
-    # Calculate footprint result = calculateFootprint(electricity, gas, oil, car_mileage, longhaul, shorthaul, newspaper, tin
-    footprint = calculateFootprint(electricity, gas, oil, car_mileage, longhaul, shorthaul, newspaper, tin)
-    message = "Ideal carbon footprint (low) is from 10,000 to 15,999 pounds per year. 16,000-22,000 is considered average."
-    proceed = "If you have missed any boxes, these have been defaulted to 0. If you are happy with your submission, click track to save your footprint so we can analyse. If not, please re-enter values for calculation."
-    category = categoriseFootprint(footprint)
-
-    response_data = {
-    'footprint': footprint,
-    'category': category,
-    'message': message,
-    'trackPrompt': proceed
-    }
-
-    reply = json.dumps(response_data)
-
-    response = Response(response=reply, status=200, mimetype='application/json')
-    response.headers["Content-Type"]="application/json"
-    response.headers["Access-Control-Allow-Origin"]="*"
-
-    return response
-
-if __name__ == '__main__':
-    app.run(debug=True)
-3
-
-///////////////
-
-pip install -r requirements.txt
-pip freeze > requirements.txt
+CALCULATOR:
+-USE CASE: STRICTLY PERSONAL USE
+    - THIS MEANS WE ARE LOOKING AT THE DAILY LIFESTYLE OF A PERSON AND SEEING HOW THIS CAUSES EMISSIONS
+    - THIS IS NOT FOR BUSINESS USE, HOWEVER IN THE FUTURE, FUNCTIONALITY CAN BE PUT INTO PLACE FOR BUSINESS EMISSIONS
+-DAILY LIFESTYLE OF A PERSON:
+    - COMMUTE (SCOPE 1 IF CAR)
+    - ELECTRICITY, GAS, OIL BILL (SCOPE 2)
+    - WATER BILL (SCOPE 3)
+    - DIET (SCOPE 3)
+    -
 
 
------------------------------------------------------------------------------------
-benefits, why they're necessary,
+EMISSION FACTORS:
+  FOR UK COMPANY:
+  FOR UK GENERAL OIL electricity: https://assets.publishing.service.gov.uk/media/6567994fcc1ec5000d8eef17/data-tables-1-19.xlsx
+
+
+CALCULATION:
+
+PERSONAL PROFILE:
+-INCOME BRACKET 
+-VEHICLES OWNED (BUSINESS USE, PERSONAL USE) -> MENTION POSSIBILITY TO SCALE. mileage
+-ELECTRICITY BILL -> TRANSLATION TO KG/CO2
+-HEATING (GAS AND OIL BILL * AVERAGE EMISSION FACTOR FOR BOTH)
+-FLIGHT MILEAGE
+-WASTE/RECYCLING
+-LIFESTYLE PURCHASES (INC DIET)
+
+CARBON FOOTPRINT BASED ON LIFESTYLE:
+CERTAIN SCOPE 3 FACTORS YOU CANNOT CONTROL: SUCH AS EMISSIONS DUE TO WORK (TRAVEL, EQUIPMENT ETC)
+^THESE WOULD COME UNDER EMISSIONS OF YOUR COMPANY (EVEN IF YOU'RE THE OWNER)
+
+HAS TO BE NOTED THESE CAlCULATIONS ARE BASED ON THE LAYMAN. THE ULTRA RICH OBVIOUSLY HAVE VARY DIFFERENT LIFESTYLES
+SO A DIFFERENT CALCULATORY METHODOLOGY WOULD NEED TO BE IMPLEMENTED FOR THIS VARIATION IN LIFESTYLE. HOWEVER, MANY
+FACTORS WHICH THEY EMIT HIGHLY IN, SUCH AS AIR MILEAGE AND LIFESTYLE PURCHASES, CAN BE TAKEN AS SIMILAR, AS THE CALCULATIONS
+ARE BASED ON KG/CO2 PER £ SPENT.

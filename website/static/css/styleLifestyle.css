@@ -1,0 +1,97 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-image: url('../img/backgroundmain1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
+.logo {
+  width: 20px; /* Adjust the size as needed */
+  height: 20px; /* Adjust the size as needed */
+  padding: 0px;
+}
+
+.navbar {
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.65);
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-right a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 540;
+}
+
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff; /* White background */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.form {
+  padding: 20px;
+}
+
+.step-title {
+  color: #333; /* Dark gray title */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #28a745; /* Green button */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #6c757d; /* Dark gray button */
+}
+
+.btn-primary {
+  background-color: #007bff; /* Blue button */
+}
+
+.btn:hover {
+  opacity: 0.8;
+}

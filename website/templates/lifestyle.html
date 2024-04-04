@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Footprint Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styleLifestyle.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-right">
+      <a href="/mainmenu"><img src="static/img/logoleaf.png" alt="logo" class="logo"> Home </a>
+    </div>
+  </div>
+  {% if warning %}
+  <script>
+    // Display an alert box with a confirmation dialog
+    var result = confirm("Would you like to overwrite footprint?");
+
+    // Check the user's response
+    if (result) {
+        // If the user clicks "OK", perform the overwrite action
+        window.location.href = "/overwrite?response=yes"; // Redirect to overwrite route with 'yes' response
+    } else {
+        // If the user clicks "Cancel", perform the no overwrite action
+        window.location.href = "/overwrite?response=no"; // Redirect to overwrite route with 'no' response
+    }
+  </script>
+  {% endif %}
+  <div class="container">
+    <form id="carbonForm" class="form" action="/retrieveCalculation" method="post">
+      <div id="step1" class="step">
+        <h2 class="step-title">Step 1: Utilities</h2>
+        <div class="form-group">
+          <label for="electricity">Monthly Electricity Consumption (kWh) (on your bill):</label>
+          <input type="number" id="electricity" name="electricity" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="heatingType">Heating Type:</label>
+          <select id="heatingType" name="heatingType" class="form-input" required>
+            <option value="gas">Gas</option>
+            <option value="oil">Oil</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="heating">Monthly Heating Consumption (kWh) (on your bill):</label>
+          <input type="number" id="heating" name="heating" class="form-input" required>
+        </div>
+          <button onclick="nextStep()" class="btn">Next</button>
+      </div>
+      <div id="step2" class="step">
+        <h2 class="step-title">Step 2: Transportation</h2>
+        <div class="form-group">
+          <label for="carType">Car Type:</label>
+          <select id="carType" name="carType" class="form-input" required>
+            <option value="diesel">Diesel</option>
+            <option value="petrol">Petrol</option>
+            <option value="hybrid">Hybrid</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="carMileage">What is your usual weekly mileage in your car?</label>
+          <input type="number" id="carMileage" name="carMileage" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="flight">Estimate how many miles did you fly in the last month?</label>
+          <input type="number" id="flight" name="flight" class="form-input" required>
+        </div>
+        <div class="btn-group">
+          <button onclick="prevStep()" class="btn btn-secondary">Previous</button>
+          <button onclick="nextStep()" class="btn">Next</button>
+        </div>
+      </div>
+      <div id="step3" class="step">
+        <h2 class="step-title">Step 3: Expenses</h2>
+        <div class="form-group">
+          <label for="meatAndDairy">How much do you spend (£) in a week on just meat and dairy? </label>
+          <input type="number" id="meatAndDairy" name="meatAndDairy" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="grocery">How much do you spend (£) on the rest of your weekly grocery shop? </label>
+          <input type="number" id="grocery" name="grocery" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="goods">How much do you spend (£) in a week on items outside of your grocery shop?</label>
+          <input type="number" id="goods" name="goods" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="services">How much do you spend (£) in a week on services? </label>
+          <input type="number" id="services" name="services" class="form-input" required>
+        </div>
+        <div class="btn-group">
+          <button onclick="prevStep()" class="btn btn-secondary">Previous</button>
+          <button onclick="nextStep()" class="btn">Next</button>
+        </div>
+      </div>
+      <div id="step0" class="step">
+        <h2 class="step-title">Step 4: Household Information</h2>
+        <div class="form-group">
+          <label for="householdSize">Household Size:</label>
+          <input type="number" id="householdSize" name="householdSize" class="form-input" min="1" max="10" required>
+        </div>
+        <div class="form-group">
+          <label for="householdIncome">Household Annual Disposable Income </label>
+          <input type="range" id="householdIncome" name="householdIncome" min="5000" max="200000" step="10,000" class="form-input" required>
+          <output for="householdIncome" id="householdIncomeValue">1</output>
+        </div>
+        <div class="form-group">
+          <label for="recycling">Do you recycle?</label>
+          <select id="recycling" name="recycling" class="form-input" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+          <div class="form-group">
+            <label for="region">In which region do you live?</label>
+            <select id="region" name="region" class="form-input" required>
+              <option value="ni">Northern Ireland</option>
+              <option value="scot">Scotland</option>
+              <option value="wal">Wales</option>
+              <option value="ne">Northern England</option>
+              <option value="mid">Midlands</option>
+              <option value="se">Southern England</option>
+              <option value="london">London</option>
+            </select>
+          </div>
+        <div class="btn-group">
+          <button onclick="prevStep()" class="btn btn-secondary">Previous</button>
+          <button type="submit" class="btn btn-primary">Save Profile</button>
+        </div>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='script/scriptLifestyle.js') }}"></script>
+</body>
+</html>
