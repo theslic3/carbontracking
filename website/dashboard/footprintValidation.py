@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from website.models import Footprint
 from flask_login import current_user
+from .. import db
 
 def validation(current_date, prev_date):
     time_difference = current_date - prev_date
@@ -15,6 +16,54 @@ def plus_one_month(current_date, num_days):
     #Call in prgram by plus_one_month(datetime.now(), 30)
     new_date = current_date - timedelta(days = numDays)
     return new_date
+
+def get_most_recent_footprint(user_id):
+    most_recent_footprint = Footprint.query.filter_by(user_id=user_id).order_by(Footprint.date.desc()).first()
+    return most_recent_footprint
+
+def get_footprint_emission_factors(most_recent_footprint):
+        # Accessing emission factors directly from the most recent footprint object
+    emissions_factors = {
+        'electricity_emission_factor': most_recent_footprint.electricity_emission_factor,
+        'heating_emission_factor': most_recent_footprint.heating_emission_factor,
+        'car_emission_factor': most_recent_footprint.car_emission_factor,
+        'flight_emission_factor': most_recent_footprint.flight_emission_factor,
+        'meat_and_dairy_emission_factor': most_recent_footprint.meat_and_dairy_emission_factor,
+        'grocery_emission_factor': most_recent_footprint.grocery_emission_factor,
+        'goods_emission_factor': most_recent_footprint.goods_emission_factor,
+        'services_emission_factor': most_recent_footprint.services_emission_factor,
+        'waste_emission_factor': most_recent_footprint.waste_emission_factor,
+        'water_emission_factor': most_recent_footprint.water_emission_factor
+    }
+    return emissions_factors
+
+def get_previous_footprints_with_dates(user_id):
+    # Retrieve up to 6 previous footprints with dates
+    previous_footprints = Footprint.query.filter_by(user_id=user_id).order_by(Footprint.date.desc()).limit(6).all()
+    footprints_with_dates = {}
+
+    for footprint in previous_footprints:
+        footprints_with_dates[footprint.date] = footprint.forecasted_annual_footprint
+
+    return footprints_with_dates
+
+def get_graph_data(factors, tracking):
+    data_factors_key = []
+    data_factors_value = []
+    data_tracking_key = []
+    data_tracking_value = []
+
+    for factor in factors:
+        data_factors_key.append(factor)
+        data_factors_value.append(factors[factor])
+
+    for date in tracking:
+        data_tracking_key.append(date)
+        data_tracking_value.append(tracking[date])
+
+    return [data_factors_key, data_factors_value, data_tracking_key, data_tracking_value]
+
+
 
 '''
 def new_footprint(footprint_profile):

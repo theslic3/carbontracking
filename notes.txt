@@ -14,11 +14,13 @@ EMISSION FACTORS:
   FOR UK COMPANY:
   FOR UK GENERAL OIL electricity: https://assets.publishing.service.gov.uk/media/6567994fcc1ec5000d8eef17/data-tables-1-19.xlsx
 
+HOUSEHOLD SIZE:
+https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/families/datasets/familiesandhouseholdsfamiliesandhouseholds
 
 CALCULATION:
 
 PERSONAL PROFILE:
--INCOME BRACKET 
+-INCOME BRACKET
 -VEHICLES OWNED (BUSINESS USE, PERSONAL USE) -> MENTION POSSIBILITY TO SCALE. mileage
 -ELECTRICITY BILL -> TRANSLATION TO KG/CO2
 -HEATING (GAS AND OIL BILL * AVERAGE EMISSION FACTOR FOR BOTH)

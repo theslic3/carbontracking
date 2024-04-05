@@ -85,7 +85,8 @@ def calculate_carbon_footprint(response, conversion_factors):
         grocery_emission_factor,
         goods_emission_factor,
         services_emission_factor,
-        waste_emission_factor
+        waste_emission_factor,
+        water_emission_factor
     ])) / household_size
 
     # Calculate forecasted annual footprint = monthly footprint * 12 (estimation given current trends)

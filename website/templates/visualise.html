@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleLogin.css') }}">
+    <title>Sign-up - Carbon Footprint Tracker</title>
+</head>
+<body>
+    <div class="login-container">
+        <img src="static/img/logoleaf.png" alt="logo" class="logo">
+        <h3>Carbon Footprint Tracker </h2>
+        <form action="/register" method="post">
+            <label for="username">Enter your email:</label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="username">Enter your name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="password">Enter a password:</label>
+            <input type="password" id="password1" name="password1" required>
+
+            <label for="password">Confirm password:</label>
+            <input type="password" id="password2" name="password2" required>
+
+            <button type="submit">Register</button>
+              {% if error %}
+                <div style="color: red;">{{ error }}</div>
+              {% endif %}
+        </form>
+
+        <div class="options-container">
+            <a href="/signin" class="option">Already a user? Log In</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -108,15 +108,36 @@ def overwrite():
 
 @views.route('/testingdates', methods=['GET', 'POST'])
 def datetest():
-    previous_footprint = Footprint.query.filter_by(user_id=current_user.id).order_by(Footprint.date.desc()).first()
-    if previous_footprint:
+    #previous_footprint = Footprint.query.filter_by(user_id=current_user.id).order_by(Footprint.date.desc()).first()
+    new_footprint = Footprint.query.filter_by(user_id=current_user.id, id=9).first()
+    if new_footprint:
         current_date = datetime.now()
-        new_date = current_date - timedelta(days=90)  # Assuming a month is 30 days
-        previous_footprint.date = new_date
+        new_date = current_date - timedelta(days=30)  # Assuming a month is 30 days
+        new_footprint.date = new_date
         db.session.commit()
-        new_footprint = Footprint.query.filter_by(user_id=current_user.id).order_by(Footprint.date.desc()).first()
+        #new_footprint = Footprint.query.filter_by(user_id=current_user.id).order_by(Footprint.date.desc()).offset(1).limit(1).first()
+        #new_footprint = Footprint.query.filter_by(user_id=current_user.id).order_by(Footprint.date.desc()).first()
+        new_footprint = Footprint.query.filter_by(user_id=current_user.id, id=9).first()
+
+
         new_footprint_date = str(new_footprint.date)
         return render_template('mainmenu.html', message=new_footprint_date)
+
+@views.route('/retrieve_emissionfactors', methods=['GET', 'POST'])
+@login_required
+def retrieve():
+    most_recent_footprint = get_most_recent_footprint(current_user.id)
+    emission_factors_recent = get_footprint_emission_factors(most_recent_footprint)
+    electricity = emission_factors_recent['electricity_emission_factor']
+
+    footprints_with_dates = get_previous_footprints_with_dates(current_user.id)
+
+    graph_data = get_graph_data(emission_factors_recent,footprints_with_dates)
+
+    for list in graph_data:
+        print(list)
+
+    return render_template('mainmenu.html', message= "Success")
 
 
 '''
