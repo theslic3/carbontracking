@@ -1,3 +1,75 @@
+Data Entry:::::
+
+1)
+User Email
+
+2)
+User Name?
+
+3)
+Password (needs to be validated)
+
+4)
+Footprint & Emission factors
+Emission factors to the database
+This is then saved with the date and time to give a footprint.
+Recent footprint is the most recent piece of footprint data.
+This data will have overall emission, as well as a breakdown of the different emissions factors
+
+///////////////
+
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+
+-----------------------------------------------------------------------------------
+benefits, why they're necessary,
+
+-----------------------------------------------------------------------------------
+AI: model takes emission factors, gives lifestyle choices designed to make the biggest impact to reducing carbon footprint
+
+instance
+  database.db
+  users.sqlite
+myenv
+venv
+website
+  __pycache_
+  dashboard
+    footprintCalculation.py
+    footprintValidation.py
+    userValidation.py
+    footprintFunctionsFromDatabase.py
+  instance
+  static
+    CSS
+      styleCalculation.CSS
+      styleLifestyle.CSS
+      styleLogin.CSS
+      styleMain.CSS
+      styleVisualise.css
+    img
+    script
+      scriptCarbonFootprintBreakdown.js
+      scriptLifestyle.js
+    .DS_Store
+  templates
+  calculatefootprint.html
+  lifestyle.html
+  mainmenu.html
+  register.html
+  signin.html
+  footprintBreakdown.html
+  __init__.py
+  auth.py
+  models.py
+  views.py
+.DS_Store
+.gitattributes
+main.py (where application runs from)
+requirements.txt
+
+
 CALCULATOR:
 -USE CASE: STRICTLY PERSONAL USE
     - THIS MEANS WE ARE LOOKING AT THE DAILY LIFESTYLE OF A PERSON AND SEEING HOW THIS CAUSES EMISSIONS

@@ -45,11 +45,11 @@ def categorise_income(income):
     elif income <= 32349:
         return "Average"
     elif income <= 43490:
-        return "High"
+        return "Above Average"
     elif income <= 90000:
-        return "Very High"
+        return "High"
     else:
-        return "Highest"
+        return "Very High"
 
 def footprint_regional_comparison():
     pass

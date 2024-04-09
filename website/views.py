@@ -5,7 +5,9 @@ from flask import Blueprint, render_template, request, jsonify, Response, redire
 from flask_login import login_required, current_user
 from website.dashboard.calculation import *
 from website.dashboard.footprintValidation import *
+from website.dashboard.improvementGeneration import *
 import json
+
 
 views = Blueprint('views', __name__)
 
@@ -106,73 +108,45 @@ def overwrite():
     else:
         return redirect('/mainmenu')
 
-@views.route('/testingdates', methods=['GET', 'POST'])
-def datetest():
-    #previous_footprint = Footprint.query.filter_by(user_id=current_user.id).order_by(Footprint.date.desc()).first()
-    new_footprint = Footprint.query.filter_by(user_id=current_user.id, id=9).first()
-    if new_footprint:
-        current_date = datetime.now()
-        new_date = current_date - timedelta(days=30)  # Assuming a month is 30 days
-        new_footprint.date = new_date
-        db.session.commit()
-        #new_footprint = Footprint.query.filter_by(user_id=current_user.id).order_by(Footprint.date.desc()).offset(1).limit(1).first()
-        #new_footprint = Footprint.query.filter_by(user_id=current_user.id).order_by(Footprint.date.desc()).first()
-        new_footprint = Footprint.query.filter_by(user_id=current_user.id, id=9).first()
-
-
-        new_footprint_date = str(new_footprint.date)
-        return render_template('mainmenu.html', message=new_footprint_date)
-
 @views.route('/retrieve_emissionfactors', methods=['GET', 'POST'])
 @login_required
 def retrieve():
     most_recent_footprint = get_most_recent_footprint(current_user.id)
     emission_factors_recent = get_footprint_emission_factors(most_recent_footprint)
-    electricity = emission_factors_recent['electricity_emission_factor']
-
+    three_highest_emissions = get_three_highest_emissions(emission_factors_recent)
+    footprint_breakdown_facts = get_breakdown_facts(most_recent_footprint)
     footprints_with_dates = get_previous_footprints_with_dates(current_user.id)
-
     graph_data = get_graph_data(emission_factors_recent,footprints_with_dates)
 
-    for list in graph_data:
-        print(list)
+    improvements = format_response_a(generate_lifestyle_improvements_prompt(footprint_breakdown_facts,three_highest_emissions))
+    discussion = format_response_b(generate_footprint_discussion_prompt(footprint_breakdown_facts))
 
-    return render_template('mainmenu.html', message= "Success")
+    response_improvements = generate_suggestions(improvements)
+    response_discussion = generate_suggestions(discussion)
 
+    session['graph_data'] = graph_data
+    session['response_improvements'] = response_improvements
+    session['response_discussion'] = response_discussion
 
-'''
-@views.route('/calculation_old', methods=['POST'])
+    return redirect('/breakdown')
+
+@views.route('/breakdown', methods=['GET', 'POST'])
+@login_required
+def breakdown():
+    graph_data = session.get('graph_data')
+    response_improvements = session.get('response_improvements')
+    response_discussion = session.get('response_discussion')
+
+    return render_template('visualise.html', graph_data=graph_data, improvements=response_improvements, discussion=response_discussion)
+
+#ADMIN USE ONLY - FOR MANUAL DATABASE EDITS
+@views.route('/testingdates', methods=['GET', 'POST'])
 def datetest():
-    data = request.form
-    electricity = float(data.get('electricity-factor'))
-    gas = float(data.get('gas-factor'))
-    oil = float(data.get('oil-factor'))
-    car_mileage = float(data.get('carmileage-factor'))
-    longhaul = float(data.get('longhaul-factor'))
-    shorthaul = float(data.get('shorthaul-factor'))
-    newspaper = convertRecycling(str(data.get('newspaper-factor')))
-    tin = convertRecycling(str(data.get('tin-factor')))
-
-    print(tin, newspaper)
-
-    # Calculate footprint result = calculateFootprint(electricity, gas, oil, car_mileage, longhaul, shorthaul, newspaper, tin
-    footprint = calculateFootprint(electricity, gas, oil, car_mileage, longhaul, shorthaul, newspaper, tin)
-    message = "Ideal carbon footprint (low) is from 10,000 to 15,999 pounds per year. 16,000-22,000 is considered average."
-    proceed = "If you have missed any boxes, these have been defaulted to 0. If you are happy with your submission, click track to save your footprint so we can analyse. If not, please re-enter values for calculation."
-    category = categoriseFootprint(footprint)
-
-    response_data = {
-    'footprint': footprint,
-    'category': category,
-    'message': message,
-    'trackPrompt': proceed
-    }
-
-    reply = json.dumps(response_data)
-
-    response = Response(response=reply, status=200, mimetype='application/json')
-    response.headers["Content-Type"]="application/json"
-    response.headers["Access-Control-Allow-Origin"]="*"
-
-    return response
-'''
+    #previous_footprint = Footprint.query.filter_by(user_id=current_user.id).order_by(Footprint.date.desc()).first()
+    new_footprint = Footprint.query.filter_by(user_id=current_user.id, id=10).first()
+    if new_footprint:
+        new_footprint.income_category = "Very High"
+        db.session.commit()
+        new_footprint = Footprint.query.filter_by(user_id=current_user.id, id=9).first()
+        new_footprint_date = str(new_footprint.date)
+        return render_template('mainmenu.html', message=new_footprint_date)

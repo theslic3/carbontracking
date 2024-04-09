@@ -13,7 +13,7 @@
     <div class="navbar-right">
       <a href="/signout">Sign Out</a>
     </div>
-    <p style="color: green;">{{ message }}</p>
+    <p style="color: black;">{{ message }}</p>
   </div>
   {% else %}
   <div class="navbar">
@@ -31,23 +31,23 @@
     <div class="dashboard">
       <a href="/lifestyle" class="dashboard-item" style="text-decoration: none;" >
           <img src="../static/img/calculatefootprint.png" alt="calculate footprint" class="img">
-          <h2>Lifestyle</h2>
+          <h2>Input Lifestyle</h2>
+      </a>
+      <a href="retrieve_emissionfactors" class="dashboard-item" style="text-decoration: none;">
+          <img src="../static/img/visualisefootprint.png" alt="calculate footprint" class="img">
+          <h2>Breakdown</h2>
+      </a>
+      <a href="/" class="dashboard-item" style="text-decoration: none;">
+          <img src="../static/img/offset.png" alt="calculate footprint" class="img">
+          <h2>Improve </h2>
       </a>
       <a href="/calculatefootprint" class="dashboard-item" style="text-decoration: none;">
-          <img src="../static/img/trackfootprint.png" alt="calculate footprint" class="img">
-          <h2>Track Footprint</h2>
+          <img src="../static/img/info1.png" alt="calculate footprint" class="img">
+          <h2>FAQs</h2>
       </a>
       <a href="/testingdates" class="dashboard-item" style="text-decoration: none;">
-          <img src="../static/img/visualisefootprint.png" alt="calculate footprint" class="img">
-          <h2>Visualise Footprint</h2>
-      </a>
-      <a href="/retrieve_emissionfactors" class="dashboard-item" style="text-decoration: none;">
-          <img src="../static/img/offset.png" alt="calculate footprint" class="img">
-          <h2>Improve Footprint</h2>
-      </a>
-      <a href="link-to-account-settings" class="dashboard-item" style="text-decoration: none;">
           <img src="../static/img/accountsettings.png" alt="account settings" class="img">
-          <h2>Account Settings</h2>
+          <h2>Account </h2>
       </a>
     </div>
   </div>

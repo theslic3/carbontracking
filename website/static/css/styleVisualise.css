@@ -1,0 +1,85 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-image: url('../img/forest1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+.logo {
+    width: 20px; /* Adjust the size as needed */
+    height: 20px; /* Adjust the size as needed */
+    padding: 0px;
+}
+
+.navbar {
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.65);
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-right a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 540;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the rows horizontally */
+}
+
+.row {
+    display: flex;
+    width: 80%; /* Set width of rows */
+    margin: 20px 0; /* Add margin between rows */
+}
+
+.chart-container-pi {
+    flex: 2.5;
+    background-color: rgba(0, 0, 0, 0.65);
+    color: white; /* Text color */
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px; /* Rounded corners */
+    text-align: center
+}
+
+
+.chart-container-line {
+    flex: 6;
+    color: white; /* Text color */
+    padding: 10px;
+    margin: 10px;
+    min-height: 300px;
+    border-radius: 10px; /* Rounded corners */
+    background-color: rgba(0, 0, 0, 0.65);
+    text-align: center
+}
+
+.text-container {
+    flex: 4; /* Four-thirds width (40% of the row) */
+    background-color: rgba(0, 0, 0, 0.65);
+    color: white; /* Text color */
+    padding: 10px;
+    margin: 10px;
+    border-radius: 50px; /* Rounded corners */
+}
+
+.chart-container-pi canvas,
+.chart-container-line canvas {
+    width: 100%; /* Ensure canvas fills its container */
+    height: 100%; /* Ensure canvas fills its container */
+}
