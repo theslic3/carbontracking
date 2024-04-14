@@ -1,0 +1,73 @@
+/* Reset and general styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Body styling */
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/forest1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    color: black; /* Text color for contrast */
+}
+
+.logo {
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+}
+
+.img {
+  width: 60px; /* Adjust the size as needed */
+  height: 60px; /* Adjust the size as needed */
+  padding: 0px;
+}
+
+.navbar {
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.90);
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-right a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 540;
+}
+
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Light background for contrast */
+    border-radius: 8px;
+}
+
+/* FAQ item styling */
+.faq-item {
+    margin-bottom: 20px; /* Add space between FAQ items */
+}
+
+.faq-item h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 18px;
+}

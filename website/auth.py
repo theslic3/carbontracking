@@ -9,13 +9,6 @@ from . import db
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/', methods=['GET', 'POST'])
-def hello():
-    if request.method == 'POST':
-        print(request)
-        return redirect('/signin.html')
-    return render_template('signin.html')
-
 @auth.route('/signin', methods=['GET','POST'])
 def signin():
     if request.method == 'POST':
@@ -26,7 +19,7 @@ def signin():
         #if user and user.password == password:
         if user and check_password_hash(user.password, password):
             login_user(user, remember=True)
-            return redirect(url_for('views.show_dashboard'))
+            return redirect('/mainmenu')
         else:
             return render_template('signin.html', error='Invalid email or password')
     return render_template('signin.html')
@@ -62,6 +55,10 @@ def register():
         return redirect(url_for('views.show_dashboard'))
 
     return render_template('register.html')
+
+@auth.route('/reset', methods=['GET'])
+def reset():
+    return render_template('forgotpassword.html')
 
 @auth.route('/signout', methods=['GET', 'POST'])
 @login_required

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleFaq.css') }}">
+    <title>FAQs</title>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-right">
+      <a href="/mainmenu"><img src="static/img/logoleaf.png" alt="logo" class="logo"> Home </a>
+    </div>
+  </div><br/><br/><br/><br/>
+
+  <div class="faq-container">
+    <h1><u>Getting Started</u></h1><br/>
+
+    <div class="faq-item">
+        <h4>How do I use the app?</h4>
+        <p>Begin by navigating to 'Input Lifestyle' on the home page. Input values and click submit!</p>
+        <p>Then head to breakdown to see your footprint calculation.</p>
+        <p>There is one saved calculation available per month, so enough time is given for the improvements you make to take effect in reducing your emissions!</p>
+    </div>
+    <div class="faq-item">
+        <h4>How do I use find my energy usage- I'm not familiar with 'kwh'?</h4>
+        <p>The term kwh stands for 'kilowatt hours'.</p>
+        <p>This measurement is used for measuring consumption of heating and electricity, and as such will be available on your monthly bill.</p>
+
+    </div>
+    <div class="faq-item">
+        <h4>Why do I need to enter my income?</h4>
+        <p>Income is collected to tailor improvements based on what you can realistically afford to invest in living a greener life.</p>
+        <p>This value can be approximated if you do not want to enter your income. We do not store this date for anything beyond suggesting improvements. </p>
+
+    </div>
+    <div class="faq-item">
+        <h4>How are the calculations performed?</h4>
+        <p>The calculation involves multiplying the values you provide in using something which produced CO2 emissions, and multiplying by a 'conversion factor'. This value is then an individual emission factor.</p>
+        <p>These can be summed to get a total emission value. If the right underlying emissions inputs are chosen (like we have tried to choose!), this emission value can be said to be a carbon footprint.</p>
+        <p>Conversion Factors are available from the <a href="https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2023">UK Gov Website</a>.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Do you use any external APIs?</h4>
+        <p>We use <a href="https://www.openai.com/">OpenAI's</a> model API. So sometimes there may be a delay when fetching the breakdown!</p>
+    </div>
+  </div>
+
+</body>
+</html>

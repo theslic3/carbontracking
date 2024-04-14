@@ -21,11 +21,13 @@
             <button type="submit">Login</button>
               {% if error %}
                 <div style="color: red;">{{ error }}</div>
+              {% elif warning %}
+                <div style="color: orange;">{{ warning }}</div>
               {% endif %}
         </form>
 
         <div class="options-container">
-            <a href="/forgotPassword" class="option">Forgot Password?</a>
+            <a href="/reset" class="option">Forgot Password?</a>
             <span class="separator"> | </span>
             <a href="/register" class="option">New User? Sign Up</a>
         </div>

@@ -1,16 +1,27 @@
+/* Add Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+:root {
+    --green: #28B463; /* A fresh green for sustainability */
+    --brown: #A04000; /* Earthy brown for organic materials */
+    --blue: #3498DB; /* Blue for water conservation */
+    --gray: #5D6D7E; /* Gray for emissions and industrial factors */
+    --dark-overlay: rgba(0, 0, 0, 0.8); /* Dark overlay for better readability */
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+}
+
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Montserrat', sans-serif;
-}
-
-body {
-    background-image: url('../img/forest1.jpg');
+    font-family: var(--font-secondary);
+    background-image: url('../img/backgroundmain1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    margin: 0;
 }
 
 .logo {
@@ -20,19 +31,23 @@ body {
 }
 
 .navbar {
-    margin-left: auto;
-    background-color: rgba(255, 255, 255, 0.65);
+    background-color: var(--green);
     padding: 10px;
-    color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: var(--font-primary);
 }
 
 .navbar-right a {
-    color: #333;
+    color: var(--text-light);
     text-decoration: none;
     font-weight: 540;
+    transition: color 0.3s;
+}
+
+.navbar-right a:hover {
+    color: var(--blue); /* Hover color change */
 }
 
 .container {
@@ -45,41 +60,58 @@ body {
     display: flex;
     width: 80%; /* Set width of rows */
     margin: 20px 0; /* Add margin between rows */
+    flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+.chart-container-pi,
+.text-container,
+.chart-container-line {
+    background-color: var(--dark-overlay);
+    color: var(--text-light); /* Text color */
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px; /* Rounded corners */
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adds depth */
+    transition: transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.chart-container-pi:hover,
+.chart-container-line:hover,
+.text-container:hover {
+    transform: scale(1.03); /* Slightly enlarge on hover */
 }
 
 .chart-container-pi {
     flex: 2.5;
-    background-color: rgba(0, 0, 0, 0.65);
-    color: white; /* Text color */
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px; /* Rounded corners */
-    text-align: center
 }
-
 
 .chart-container-line {
     flex: 6;
-    color: white; /* Text color */
-    padding: 10px;
-    margin: 10px;
     min-height: 300px;
-    border-radius: 10px; /* Rounded corners */
-    background-color: rgba(0, 0, 0, 0.65);
-    text-align: center
 }
 
 .text-container {
     flex: 4; /* Four-thirds width (40% of the row) */
-    background-color: rgba(0, 0, 0, 0.65);
-    color: white; /* Text color */
-    padding: 10px;
-    margin: 10px;
     border-radius: 50px; /* Rounded corners */
 }
 
 .chart-container-pi canvas,
 .chart-container-line canvas {
     width: 100%; /* Ensure canvas fills its container */
-    height: 100%; /* Ensure canvas fills its container */
+    height: auto; /* Adjust height automatically */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .chart-container-pi,
+    .text-container,
+    .chart-container-line {
+    flex: none;
+    width: 90%; /* Adjust width for mobile */
+    }
 }

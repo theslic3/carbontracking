@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from website.models import Footprint
 from flask_login import current_user
-from .. import db
+from  .. import db
 
 def validation(current_date, prev_date):
     time_difference = current_date - prev_date

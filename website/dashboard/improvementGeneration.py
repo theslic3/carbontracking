@@ -74,30 +74,17 @@ def generate_footprint_discussion_prompt(breakdown_facts):
 
 
 def generate_suggestions(prompt):
-    completion = client.chat.completions.create(
-      model="gpt-3.5-turbo",
-      messages=[
-        {"role": "system", "content": "You are a friendly carbon footprint expert."},
-        {"role": "user", "content": prompt}
-      ],
-      temperature=0.7
-    )
+    try:
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a friendly carbon footprint expert."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.7
+        )
 
-    return completion.choices[0].message.content
-
-def format_response_a(text):
-    lines = text.split("###")
-    numbered_text = ""
-    for i, line in enumerate(lines):
-        if i != 0:
-            numbered_text += "\n\n"
-        numbered_text += f"{i + 1}) {line.strip()}"
-    return numbered_text
-
-def format_response_b(text):
-    modified_text = ""
-    for char in text:
-        modified_text += char
-        if char == ".":
-            modified_text += "\n"
-    return modified_text
+        return completion.choices[0].message.content
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return "Improvements cannot be generated at this time. Please try again later!"

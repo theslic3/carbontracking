@@ -51,8 +51,6 @@ def categorise_income(income):
     else:
         return "Very High"
 
-def footprint_regional_comparison():
-    pass
 
 def calculate_carbon_footprint(response, conversion_factors):
 

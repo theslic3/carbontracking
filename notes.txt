@@ -21,6 +21,8 @@ This data will have overall emission, as well as a breakdown of the different em
 pip freeze > requirements.txt
 pip install -r requirements.txt
 
+python -m unittest discover -s tests/unit_tests -p "*_test.py"
+
 
 -----------------------------------------------------------------------------------
 benefits, why they're necessary,
@@ -68,6 +70,9 @@ website
 .gitattributes
 main.py (where application runs from)
 requirements.txt
+
+--cov=website --cov-report term-missing tests/
+
 
 
 CALCULATOR:
