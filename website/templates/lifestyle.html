@@ -30,7 +30,8 @@
   <div class="container">
     <form id="carbonForm" class="form" action="/retrieveCalculation" method="post">
       <div id="step1" class="step">
-        <h2 class="step-title">Step 1: Utilities</h2>
+        <img src="static/img/electricity.png" alt="electricity" class="img">
+        <h2 class="step-title">Utilities</h2>
         <div class="form-group">
           <label for="electricity">Monthly Electricity Consumption (kWh) (on your bill):</label>
           <input type="number" id="electricity" name="electricity" class="form-input" required>
@@ -49,8 +50,8 @@
           <button onclick="nextStep()" class="btn">Next</button>
       </div>
       <div id="step2" class="step">
-        <img src="static/img/electricity.png" alt="electricity" class="img">
-        <h2 class="step-title">Step 2: Transportation</h2>
+        <img src="static/img/transport.png" alt="transport" class="img">
+        <h2 class="step-title">Transportation</h2>
         <div class="form-group">
           <label for="carType">Car Type:</label>
           <select id="carType" name="carType" class="form-input" required>
@@ -73,8 +74,8 @@
         </div>
       </div>
       <div id="step3" class="step">
-        <img src="static/img/electricity.png" alt="electricity" class="img">
-        <h2 class="step-title">Step 3: Expenses</h2>
+        <img src="static/img/grocery.png" alt="g&s" class="img">
+        <h2 class="step-title">Expenses</h2>
         <div class="form-group">
           <label for="meatAndDairy">How much do you spend (£) in a week on just meat and dairy? </label>
           <input type="number" id="meatAndDairy" name="meatAndDairy" class="form-input" required>
@@ -97,8 +98,8 @@
         </div>
       </div>
       <div id="step0" class="step">
-        <img src="static/img/electricity.png" alt="electricity" class="img">
-        <h2 class="step-title">Step 4: Household Information</h2>
+        <img src="static/img/home.png" alt="home" class="img">
+        <h2 class="step-title">Household Information</h2>
         <div class="form-group">
           <label for="householdSize">Household Size:</label>
           <input type="number" id="householdSize" name="householdSize" class="form-input" min="1" max="10" required>

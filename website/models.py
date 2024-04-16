@@ -26,6 +26,28 @@ class Footprint(db.Model):
     date = db.Column(db.Date, default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
+    def to_dict(self):
+        return {
+            'electricity_emission_factor': self.electricity_emission_factor,
+            'heating_emission_factor': self.heating_emission_factor,
+            'car_emission_factor': self.car_emission_factor,
+            'flight_emission_factor': self.flight_emission_factor,
+            'meat_and_dairy_emission_factor': self.meat_and_dairy_emission_factor,
+            'grocery_emission_factor': self.grocery_emission_factor,
+            'goods_emission_factor': self.goods_emission_factor,
+            'services_emission_factor': self.services_emission_factor,
+            'waste_emission_factor': self.waste_emission_factor,
+            'water_emission_factor': self.water_emission_factor,
+            'household_size': self.household_size,
+            'income_category': self.income_category,
+            'recycling_status': self.recycling_status,
+            'total_carbon_footprint': self.total_carbon_footprint,
+            'forecasted_annual_footprint': self.forecasted_annual_footprint,
+            'regional_annual_average_per_person': self.regional_annual_average_per_person,
+            'UK_annual_average_per_person': self.UK_annual_average_per_person,
+            # add all other fields you need to include in the dictionary
+        }
+
 class Test(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     test = db.Column(db.String(255), nullable=False)

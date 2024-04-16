@@ -4,7 +4,7 @@ from . import db
 from flask import Blueprint, render_template, request, jsonify, Response, redirect, flash, url_for, session
 from flask_login import login_required, current_user
 from website.dashboard.calculation import *
-from website.dashboard.footprintValidation import *
+from website.dashboard.footprint import *
 from website.dashboard.improvementGeneration import *
 import json
 
@@ -32,7 +32,7 @@ def emissionFactors():
     response = request.form
     footprint_profile = calculate_carbon_footprint(response, conversion_factors)
     data = {}
-    for factor in footprint_profile: #Dictionary of footprint data to be validated against, filled out
+    for factor in footprint_profile: #Dictionary of footprint data to be validated against, filled out. This will be saved in the session if required.
         data[factor] = footprint_profile[factor]
 
     #create a footprint object, ready to be commited for validated footprints, using the footprint_profile dictionary
@@ -131,8 +131,8 @@ def retrieve():
         footprints_with_dates = get_previous_footprints_with_dates(current_user.id)
         graph_data = get_graph_data(emission_factors_recent, footprints_with_dates)
 
-        print(three_highest_emissions)
-        print(footprint_breakdown_facts)
+        #print("3 highest emissions:", three_highest_emissions, "\nBreakdown facts: ", footprint_breakdown_facts, "\n graph_data:", graph_data")
+        #print(footprint_breakdown_facts)
 
         improvements = generate_lifestyle_improvements_prompt(footprint_breakdown_facts, three_highest_emissions)
         discussion = generate_footprint_discussion_prompt(footprint_breakdown_facts)
@@ -147,9 +147,9 @@ def retrieve():
         return redirect('/breakdown')
 
     except ValueError as e:
-        return render_template('mainmenu.html', message="No previous footprint data found- Add some!")
+        return render_template('mainmenu.html', message="No previous footprint data found- Add some!") #if no previous footprint for user
     except Exception as e:
-        return render_template('mainmenu.html', message="An error occurred. Please try again later.")
+        return render_template('mainmenu.html', message="An error occurred. Please try again later.") #any other error, as this is a crucical stage in terms of functionality
 
 @views.route('/breakdown', methods=['GET', 'POST'])
 @login_required
@@ -173,7 +173,7 @@ def home():
     return render_template('mainmenu.html', message="Account Changed")
 
 '''
-#ADMIN USE ONLY - FOR MANUAL DATABASE EDITS
+#OLD- ADMIN USE ONLY - FOR MANUAL DATABASE EDITS
 @views.route('/testingdates', methods=['GET', 'POST'])
 @login_required
 def datetest():

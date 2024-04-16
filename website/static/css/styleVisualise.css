@@ -1,16 +1,13 @@
-/* Add Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap');
-
 :root {
     --green: #28B463; /* A fresh green for sustainability */
     --brown: #A04000; /* Earthy brown for organic materials */
     --blue: #3498DB; /* Blue for water conservation */
     --gray: #5D6D7E; /* Gray for emissions and industrial factors */
-    --dark-overlay: rgba(0, 0, 0, 0.8); /* Dark overlay for better readability */
-    --text-light: #ffffff;
+    --light-overlay: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
+    --text-light: #333333; /* Dark text for better contrast on light background */
     --text-dark: #333333;
-    --font-primary: 'Poppins', sans-serif;
-    --font-secondary: 'Roboto', sans-serif;
+    --font-primary: Arial, sans-serif;
+    --font-secondary: Arial, sans-serif;
 }
 
 body, html {
@@ -25,13 +22,18 @@ body, html {
 }
 
 .logo {
-    width: 20px; /* Adjust the size as needed */
-    height: 20px; /* Adjust the size as needed */
+    width: 20px;
+    height: 20px;
     padding: 0px;
 }
 
+.map {
+    height: 190px;
+    padding: 40px;
+}
+
 .navbar {
-    background-color: var(--green);
+    background-color: rgba(255, 255, 255, 0.65);
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -53,33 +55,33 @@ body, html {
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the rows horizontally */
+    align-items: center;
 }
 
 .row {
     display: flex;
-    width: 80%; /* Set width of rows */
-    margin: 20px 0; /* Add margin between rows */
-    flex-wrap: wrap; /* Ensure responsiveness */
+    width: 80%;
+    margin: 20px 0;
+    flex-wrap: wrap;
 }
 
 .chart-container-pi,
 .text-container,
 .chart-container-line {
-    background-color: var(--dark-overlay);
-    color: var(--text-light); /* Text color */
+    background-color: var(--light-overlay);
+    color: var(--text-dark);
     padding: 20px;
     margin: 10px;
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 10px;
     text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adds depth */
-    transition: transform 0.3s; /* Smooth transition for hover effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
 }
 
 .chart-container-pi:hover,
 .chart-container-line:hover,
 .text-container:hover {
-    transform: scale(1.03); /* Slightly enlarge on hover */
+    transform: scale(1.03);
 }
 
 .chart-container-pi {
@@ -92,14 +94,16 @@ body, html {
 }
 
 .text-container {
-    flex: 4; /* Four-thirds width (40% of the row) */
-    border-radius: 50px; /* Rounded corners */
+    flex: 4;
+    background-color: var(--green); /* Apply green background */
+    color: var(--text-light); /* Ensure text color contrasts well with the green background */
+    border-radius: 50px; /* Rounded corners for text containers */
 }
 
 .chart-container-pi canvas,
 .chart-container-line canvas {
-    width: 100%; /* Ensure canvas fills its container */
-    height: auto; /* Adjust height automatically */
+    width: 100%;
+    height: auto;
 }
 
 /* Media queries for responsiveness */
@@ -111,7 +115,7 @@ body, html {
     .chart-container-pi,
     .text-container,
     .chart-container-line {
-    flex: none;
-    width: 90%; /* Adjust width for mobile */
+        flex: none;
+        width: 90%;
     }
 }

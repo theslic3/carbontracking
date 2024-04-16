@@ -35,27 +35,3 @@ showStep(currentStep);
 document.getElementById('householdIncome').addEventListener('input', function() {
   document.getElementById('householdIncomeValue').innerText = this.value;
 });
-
-/*
-// Add event listener for form submission
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-  // Collect form data
-  const formData = {};
-  const inputs = form.querySelectorAll('input, select');
-  inputs.forEach(input => {
-    formData[input.name] = input.value;
-  });
-
-  const jsonData = JSON.stringify(formData);
-  console.log(jsonData);
-  let xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "/retrieveCalculation", true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send(jsonData);
-
-  return false;
-
-  // Here you can handle the JSON data as needed, such as sending it to a server
-});
-*/

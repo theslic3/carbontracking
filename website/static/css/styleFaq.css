@@ -12,12 +12,12 @@ body, html {
 
 /* Body styling */
 body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/forest1.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/lake.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     margin: 0;
-    color: black; /* Text color for contrast */
+    color: black;
 }
 
 .logo {
@@ -27,8 +27,8 @@ body {
 }
 
 .img {
-  width: 60px; /* Adjust the size as needed */
-  height: 60px; /* Adjust the size as needed */
+  width: 60px;
+  height: 60px;
   padding: 0px;
 }
 
@@ -53,13 +53,13 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* Light background for contrast */
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
 }
 
 /* FAQ item styling */
 .faq-item {
-    margin-bottom: 20px; /* Add space between FAQ items */
+    margin-bottom: 20px;
 }
 
 .faq-item h3 {

@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var footprintValues = graphData[3];
 
     // Sample data for the average carbon footprint line (replace with actual data)
-    var averageFootprintData = Array(dateLabels.length).fill(50); // Assuming the average footprint is 50 units
+    var averageFootprintData = Array(dateLabels.length).fill(6500); // Assuming the average footprint is 50 units
 
     var pieCtx = document.getElementById('pie-chart').getContext('2d');
     var lineCtx = document.getElementById('line-chart').getContext('2d');
@@ -64,18 +64,19 @@ document.addEventListener('DOMContentLoaded', function () {
     var lineChart = new Chart(lineCtx, {
         type: 'line',
         data: {
-            labels: dateLabels,
-            datasets: [{
-                label: 'Your Carbon Footprint',
-                data: footprintValues,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
+          labels: dateLabels.reverse(),
+          datasets: [{
+              label: 'Footprint',
+              data: footprintValues.reverse(),
+              backgroundColor: 'rgba(50, 210, 70, 0.6)',
+              borderColor: 'rgba(0, 100, 0, 1.0)',
+              borderWidth: 1
             },
             {
-                label: 'Average Carbon Footprint per person in your area',
+                label: 'UK Average',
                 data: averageFootprintData,
-                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 10, 10, 1)',
+                borderColor: 'rgba(145, 10, 10, 1)',
                 borderWidth: 1,
                 fill: false,
                 borderDash: [5, 5] // Dashed line style
@@ -102,4 +103,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+    //format improvements using regex-> makes the appearance sleeker
+    var improvementsElement = document.querySelector('.text-container p');
+    if (improvementsElement) {
+        var formattedText = improvementsElement.innerHTML.replace(/(\d+\.\s\*\*)/g, '<br><br>$1');
+        improvementsElement.innerHTML = formattedText;
+    }
 });

@@ -24,7 +24,7 @@ def is_valid_password(password):
 
 def is_valid_email(email):
     try:
-        # Validate the email address
+        # Validate the email address using library
         validate_email(email)
         return True
     except EmailNotValidError:

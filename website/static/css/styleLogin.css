@@ -93,22 +93,3 @@ button:hover {
 .separator {
     color: #555;
 }
-/*
-body, .login-container {
-    transition: background-color 0.3s ease;
-}
-
-body.dark-mode {
-    background-color: #2e2e2e;
-}
-
-body.dark-mode .login-container {
-    background-color: #333;
-}
-
-body.dark-mode button,
-body.dark-mode .option {
-    background-color: #555;
-    color: #fff;
-}
-*/

@@ -16,8 +16,8 @@ def generate_lifestyle_improvements_prompt(breakdown_facts, three_highest_emissi
     2. {emission_2_factor}: {emission_2_value}
     3. {emission_3_factor}: {emission_3_value}
 
-    Generate an actionable plan for lifestyle improvements, focussing on each of the three highest emission factors.
-    Make sure to tailor response to the my income category. Ensure to paragraph and linebreak appropriately.
+    Generate an actionable plan for lifestyle improvements, maximum 250 words, focusing on each of the three highest emission factors. Do not include any reference to yourself.
+    Make sure to tailor response to the my income category. Ensure to paragraph the mention of an emission with '1. **', where you replace the one by which factor it is.
     """
     # Formatting the emission factors and values
     emission_1_factor, emission_1_value = three_highest_emissions[0]
