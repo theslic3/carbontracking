@@ -2,8 +2,7 @@
 
 -> Download Requirements by running pip3 install -r requirements.txt
 
--> To run the app: go to main.py, and run through command line (path/to/carbontracking -> python3 main.py)
-    or through IDE.
+-> https://carbontracking-6280e9a2cbcc.herokuapp.com/signin?next=%2F)
 
 -> init.py -> initialisation for all components and connects auth and routes through blueprinting
 -> auth.py contains routing for authentication
